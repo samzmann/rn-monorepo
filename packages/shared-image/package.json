@@ -1,6 +1,6 @@
 {
-  "name": "@vytal/vytal-container-tools",
-  "description": "Utilities and components for common Vytal container use cases.",
+  "name": "@rn-monorepo/shared-image",
+  "description": "A bowl image component that can be reused across many RN apps.",
   "version": "1.0.0",
   "main": "index.ts",
   "private": true,

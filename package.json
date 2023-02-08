@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "license": "UNLICENSED",
+  "scripts": {
+    "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock"
+  },
   "workspaces": {
     "packages": [
       "apps/*",
