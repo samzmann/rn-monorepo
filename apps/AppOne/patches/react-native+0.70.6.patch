@@ -1,0 +1,21 @@
+diff --git a/node_modules/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js b/node_modules/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js
+index 981117e..2cfe6f6 100644
+--- a/node_modules/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js
++++ b/node_modules/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js
+@@ -79,11 +79,11 @@ function processEventTypes(viewConfig: ViewConfig): void {
+  * The callback is deferred until the view is actually rendered.
+  */
+ exports.register = function(name: string, callback: () => ViewConfig): string {
+-  invariant(
+-    !viewConfigCallbacks.has(name),
+-    'Tried to register two views with the same name %s',
+-    name,
+-  );
++  // invariant(
++  //   !viewConfigCallbacks.has(name),
++  //   'Tried to register two views with the same name %s',
++  //   name,
++  // );
+   invariant(
+     typeof callback === 'function',
+     'View config getter callback for component `%s` must be a function (received `%s`)',

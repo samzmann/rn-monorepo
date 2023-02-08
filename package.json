@@ -4,7 +4,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock"
+    "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock",
+    "postinstall": "patch-package"
   },
   "workspaces": {
     "packages": [
@@ -16,6 +17,9 @@
       "**/react-native",
       "**/react-native/**"
     ]
+  },
+  "devDependencies": {
+    "patch-package": "^6.5.1",
+    "postinstall-postinstall": "^2.1.0"
   }
 }
-
