@@ -1,0 +1,21 @@
+{
+  "name": "@vytal/vytal-container-tools",
+  "description": "Utilities and components for common Vytal container use cases.",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react-native-fast-image": "8.6.3"
+  },
+  "devDependencies": {
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/react": "18.0.24",
+    "@types/react-native": "0.70.6"
+  },
+  "peerDependencies": {
+    "react": "18.1.0",
+    "react-dom": "16.3.1",
+    "react-native": "0.70.5"
+  }
+}
