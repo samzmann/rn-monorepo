@@ -28,24 +28,36 @@ All apps and shared packages are Yarn Workspaces:
 }
 ```
 
-# Running AppOne
+# Running the apps
 
-Install node modules
-```
+**Install node modules**
+```shell
 yarn
 ```
 
-Install Pods
-```
-cd apps/AppOne/ios && bundle exec pod install
-```
+**Install app Pods**
 
-Run the app
-```
+1. nav to app ios dir
+    ```shell
+    cd apps/AppOne/ios # or apps/AppTwo/ios
+    ```
+2. Install cocoapods via bundler
+    ```shell
+    bundle install
+    ```
+3. Install pods
+    ```shell
+    bundle exec pod install
+    ```
+
+**Run the app**
+```shell
 yarn ios
 ```
 
 # The first problem
+
+Try to build and run `AppOne`
 
 The app should build fine, but crashes immediately with this error:
 ```
@@ -56,7 +68,7 @@ Why???
 
 Both `AppOne` and `@rn-monorepo/shared-image` have `react-native-fast-image@8.6.3` listed as a dependency. Same version. So why is there an issue?
 
-### Hacky unusable workaround
+### Hacky NOT USABLE workaround
 
 If I comment out the code that is crashing the app I can get the app to work fine. In `node_modules/react-native/Libraries/Renderer/shims/ReactNativeViewConfigRegistry.js` comment out the `invariant` call on L82.
 
@@ -70,3 +82,20 @@ I tried adding `react-native-fast-image` to the nohoist list but that didn't hel
 
 
 # The second, less annoying problem
+
+Try to build and run `AppTwo`
+
+The app should build fine, but crashes immediately with this error:
+```
+Invariant Violation: requireNativeComponent: "FastImageView" was not found in the UIManager.
+```
+
+`AppTwo` only explicitly depends on `@rn-monorepo/shared-image`. However
+
+### Kind usable workaround
+
+If I add `react-native-fast-image` as a dependency in AppTwo/package.json, reinstall node_modules, pods, and rebuild, now it's working fine.
+
+Ok, cool, but I'd prefer not to have to do that. This solution give lots of room for error, for example forgetting to update the dependency in the app after it's been updated in the shared package...
+
+So is it not possible to have the native code from `react-native-fast-image` be automatically installed if AppTwo depends on `@rn-monorepo/shared-image`? That would be ideal. I think...
