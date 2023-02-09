@@ -1,32 +1,31 @@
+# RN Dreadful Monorepo 😭
 This is an example monorepo showing an issue with sharing native dependencies.
 
 # Basic repo structure
 
-`@rn-monorepo/shared-image` (located in `packages/shared-image`) is a shared component meant to be reused across many apps. It depends on `react-native-fast-image` to render a .webp image.
+```text
+rn-monorepo
+├── apps
+│   ├── AppOne
+│   └── AppTwo
+├── package.json
+└── packages
+    └── shared-image
+```
 
-`AppOne` is a RN app. It depends on:
+All subdirectories of `apps/` and `/packages` are Yarn Workspaces.
+
+#### shared-image
+is a shared component meant to be reused across many apps. It depends on `react-native-fast-image` to render a .webp image.
+
+#### AppOne
+A RN app that depends on:
 - `@rn-monorepo/shared-image` to render the shared image
 - `react-native-fast-image` to render an app specific .webp image
 
-`AppTwo` is another RN app. This one only depends on `@rn-monorepo/shared-image` to render the shared image.
-
-All apps and shared packages are Yarn Workspaces:
-```json
-// package.json
-{
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/react",
-      "**/react-native",
-      "**/react-native/**"
-    ]
-  }
-}
-```
+#### AppTwo
+Another RN app. This one only depends on:
+- `@rn-monorepo/shared-image` to render the shared image.
 
 # Running the apps
 
