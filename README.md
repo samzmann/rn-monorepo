@@ -98,3 +98,9 @@ If I add `react-native-fast-image` as a dependency in AppTwo/package.json, reins
 Ok, cool, but I'd prefer not to have to do that. This solution give lots of room for error, for example forgetting to update the dependency in the app after it's been updated in the shared package...
 
 So is it not possible to have the native code from `react-native-fast-image` be automatically installed if AppTwo depends on `@rn-monorepo/shared-image`? That would be ideal. I think...
+
+# To recap...
+
+Ideally, I would like to
+- have a shared package be able to manage its own native dependencies. That means if `@rn-monorepo/shared-image` depends on `react-native-fast-image`, it will automatically cause whatever app depends on it to install native deps (as opposed to have to explicitly add `react-native-fast-image` as a dependency of the app). For example: AppTwo should not have to explicitly depend on `react-native-fast-image` to use `@rn-monorepo/shared-image`.
+- have both a shared package and an app depend on the same native dependency if both require it for different use cases (for example in AppOne). For example if  `@rn-monorepo/shared-image` and `AppOne` both depend on `react-native-fast-image@8.6.3`, I should not run into the `Tried to register two views with the same name` error. Of course if there are two different versions of `react-native-fast-image` in use, then I still expect to see this error.
